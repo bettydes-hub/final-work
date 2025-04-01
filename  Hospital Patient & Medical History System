@@ -232,3 +232,47 @@ void showPatientHistory(string medicalID) {
         }
     }
 //Abiyot 
+// Update a patient's medical history
+    void updateMedicalHistory(string medicalID) {
+        cout << "\nYou've chosen to update a patient's medical history.\n";
+        Patient* temp = patientListHead;
+        bool found = false;
+
+        while (temp != NULL) {
+            if (temp->medicalID == medicalID) {
+                found = true;
+
+                // Ask user if they want to update a diagnosis or prescription
+                cout << "What would you like to update?\n";
+                cout << "1. Add new diagnosis\n";
+                cout << "2. Add new prescription\n";
+                int choice;
+                cin >> choice;
+
+                MedicalHistory* record = new MedicalHistory;
+                cout << "Enter visit details: ";
+                cin >> record->visit;
+
+                if (choice == 1) {
+                    cout << "Enter new diagnosis: ";
+                    cin >> record->diagnosis;
+                    record->prescription = "Not updated"; // Default if not updated
+                } else if (choice == 2) {
+                    cout << "Enter new prescription: ";
+                    cin >> record->prescription;
+                    record->diagnosis = "Not updated"; // Default if not updated
+                }
+
+                record->next = temp->historyHead;
+                temp->historyHead = record; // Add to the patient's history
+                cout << "Medical history updated successfully!\n";
+                break;
+            }
+            temp = temp->next;
+        }
+
+        if (!found) {
+            cout << "Patient with medical ID " << medicalID << " not found!\n";
+        }
+    }
+};
