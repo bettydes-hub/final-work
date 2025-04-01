@@ -1,39 +1,32 @@
-//sosina
 #include <iostream>
 #include <string>
 #include <queue>
-#include <limits>  // For input validation
+#include <limits>  
 
 using namespace std;
-
-// Structure to represent a medical history record
 struct MedicalHistory {
     string visit;
     string diagnosis;
     string prescription;
     MedicalHistory* next; // Link to next medical record in the list
 };
-
-// Structure to represent a patient
 struct Patient {
     string name;
     int age;
     string medicalID;
-    MedicalHistory* historyHead; // Linked list head for past medical history
-    Patient* next; // Link to next patient in the list
+    MedicalHistory* historyHead; 
+    Patient* next; 
 };
 
 class HospitalSystem {
 private:
-    queue<Patient*> patientQueue; // Queue to manage patients
-    Patient* patientListHead; // Linked list to store patients
+    queue<Patient*> patientQueue;
+    Patient* patientListHead; 
 
 public:
     HospitalSystem() {
         patientListHead = NULL;
     }
-
-    // Helper function to safely get an integer input (age)
     int getValidIntegerInput(string prompt) {
         int value;
         while (true) {
@@ -50,8 +43,6 @@ public:
             }
         }
     }
-//betelhem
-    // Add a new patient
     void addPatient() {
         cout << "\nYou've chosen to add a new patient.\n";
         Patient* newPatient = new Patient;
@@ -60,11 +51,7 @@ public:
 
         cout << "Enter patient name: ";
         cin >> newPatient->name;
-
-        // Handle invalid input for age
         newPatient->age = getValidIntegerInput("Enter patient age (must be greater than 0): ");
-
-        // Handle invalid input for medical ID
         string medicalID;
         while (true) {
             cout << "Enter medical ID (alphanumeric): ";
@@ -76,8 +63,6 @@ public:
                 cout << "Medical ID cannot be empty. Please enter a valid ID.\n";
             }
         }
-
-        // Add the new patient to the list and queue
         if (patientListHead == NULL) {
             patientListHead = newPatient;
         } else {
@@ -91,9 +76,6 @@ public:
         patientQueue.push(newPatient); // Add patient to the queue
         cout << "Patient added successfully!\n";
     }
-//Anwar
-
-// Record medical history for a patient
     void recordMedicalHistory(string medicalID) {
         cout << "\nYou've chosen to record medical history for a patient.\n";
         Patient* temp = patientListHead;
@@ -122,7 +104,6 @@ public:
             cout << "Patient with medical ID " << medicalID << " not found!\n";
         }
     }
-//bin 
 void showPatientHistory(string medicalID) {
         cout << "\nYou've chosen to view a patient's medical history.\n";
         Patient* temp = patientListHead;
@@ -157,8 +138,6 @@ void showPatientHistory(string medicalID) {
             cout << "Patient with medical ID " << medicalID << " not found!\n";
         }
     }
-//aman
-// Schedule an appointment (add patient to the queue)
     void scheduleAppointment(string medicalID) {
         cout << "\nYou've chosen to schedule an appointment for a patient.\n";
         Patient* temp = patientListHead;
@@ -178,8 +157,6 @@ void showPatientHistory(string medicalID) {
             cout << "Patient with medical ID " << medicalID << " not found!\n";
         }
     }
-//eyuel
-// Display all patients' information (name, diagnosis, medical ID)
     void displayAllPatients() {
         cout << "\nYou've chosen to display all patients and their medical information.\n";
         Patient* temp = patientListHead;
@@ -204,8 +181,6 @@ void showPatientHistory(string medicalID) {
             }
         }
     }
-//yord
-// Search for a patient by name
     void searchPatientByName() {
         cout << "\nYou've chosen to search for a patient by name.\n";
         string name;
@@ -231,8 +206,6 @@ void showPatientHistory(string medicalID) {
             cout << "Patient with name " << name << " not found!\n";
         }
     }
-//Abiyot 
-// Update a patient's medical history
     void updateMedicalHistory(string medicalID) {
         cout << "\nYou've chosen to update a patient's medical history.\n";
         Patient* temp = patientListHead;
@@ -241,8 +214,6 @@ void showPatientHistory(string medicalID) {
         while (temp != NULL) {
             if (temp->medicalID == medicalID) {
                 found = true;
-
-                // Ask user if they want to update a diagnosis or prescription
                 cout << "What would you like to update?\n";
                 cout << "1. Add new diagnosis\n";
                 cout << "2. Add new prescription\n";
@@ -276,16 +247,11 @@ void showPatientHistory(string medicalID) {
         }
     }
 };
-
-
-//samrawit
-
 int main() {
     HospitalSystem system;
     int choice;
 
     do {
-        // Main menu for the system
         cout << "\nHospital Patient & Medical History System\n";
         cout << "Choose an option by entering the corresponding number:\n";
         cout << "1. Add a new patient\n";
@@ -359,4 +325,3 @@ int main() {
     return 0;
 }
 
-//samrawit
