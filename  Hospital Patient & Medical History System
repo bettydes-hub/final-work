@@ -50,6 +50,7 @@ public:
             }
         }
     }
+//betelhem
     // Add a new patient
     void addPatient() {
         cout << "\nYou've chosen to add a new patient.\n";
