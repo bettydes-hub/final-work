@@ -204,4 +204,31 @@ void showPatientHistory(string medicalID) {
             }
         }
     }
+//yord
+// Search for a patient by name
+    void searchPatientByName() {
+        cout << "\nYou've chosen to search for a patient by name.\n";
+        string name;
+        cout << "Enter the patient's name: ";
+        cin >> name;
+
+        Patient* temp = patientListHead;
+        bool found = false;
+
+        while (temp != NULL) {
+            if (temp->name == name) {
+                found = true;
+                cout << "Patient found!\n";
+                cout << "Name: " << temp->name << endl;
+                cout << "Age: " << temp->age << endl;
+                cout << "Medical ID: " << temp->medicalID << endl;
+                break;
+            }
+            temp = temp->next;
+        }
+
+        if (!found) {
+            cout << "Patient with name " << name << " not found!\n";
+        }
+    }
 //Abiyot 
