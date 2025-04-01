@@ -91,3 +91,34 @@ public:
         patientQueue.push(newPatient); // Add patient to the queue
         cout << "Patient added successfully!\n";
     }
+//Anwar
+
+// Record medical history for a patient
+    void recordMedicalHistory(string medicalID) {
+        cout << "\nYou've chosen to record medical history for a patient.\n";
+        Patient* temp = patientListHead;
+        bool found = false;
+
+        while (temp != NULL) {
+            if (temp->medicalID == medicalID) {
+                found = true;
+                // Record a new medical history entry for the patient
+                MedicalHistory* newRecord = new MedicalHistory;
+                cout << "Enter visit details: ";
+                cin >> newRecord->visit;
+                cout << "Enter diagnosis: ";
+                cin >> newRecord->diagnosis;
+                cout << "Enter prescription: ";
+                cin >> newRecord->prescription;
+                newRecord->next = temp->historyHead;
+                temp->historyHead = newRecord; // Add to the patient's history
+                cout << "Medical history recorded successfully!\n";
+                break;
+            }
+            temp = temp->next;
+        }
+
+        if (!found) {
+            cout << "Patient with medical ID " << medicalID << " not found!\n";
+        }
+    }
