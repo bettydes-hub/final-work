@@ -143,3 +143,29 @@ public:
             cout << "Patient with medical ID " << medicalID << " not found!\n";
         }
     }
+//eyuel
+// Display all patients' information (name, diagnosis, medical ID)
+    void displayAllPatients() {
+        cout << "\nYou've chosen to display all patients and their medical information.\n";
+        Patient* temp = patientListHead;
+        if (temp == NULL) {
+            cout << "No patients available in the system.\n";
+        } else {
+            while (temp != NULL) {
+                cout << "Name: " << temp->name << endl;
+                cout << "Medical ID: " << temp->medicalID << endl;
+
+                MedicalHistory* record = temp->historyHead;
+                if (record == NULL) {
+                    cout << "No medical history available.\n";
+                } else {
+                    while (record != NULL) {
+                        cout << "Diagnosis: " << record->diagnosis << endl;
+                        record = record->next;
+                    }
+                }
+                cout << "-----------------------------" << endl;
+                temp = temp->next;
+            }
+        }
+    }
