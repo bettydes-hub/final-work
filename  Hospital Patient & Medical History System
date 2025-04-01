@@ -122,3 +122,24 @@ public:
             cout << "Patient with medical ID " << medicalID << " not found!\n";
         }
     }
+//aman
+// Schedule an appointment (add patient to the queue)
+    void scheduleAppointment(string medicalID) {
+        cout << "\nYou've chosen to schedule an appointment for a patient.\n";
+        Patient* temp = patientListHead;
+        bool found = false;
+
+        while (temp != NULL) {
+            if (temp->medicalID == medicalID) {
+                found = true;
+                patientQueue.push(temp); // Re-add patient to the queue for processing
+                cout << "Appointment scheduled for " << temp->name << endl;
+                break;
+            }
+            temp = temp->next;
+        }
+
+        if (!found) {
+            cout << "Patient with medical ID " << medicalID << " not found!\n";
+        }
+    }
