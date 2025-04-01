@@ -50,3 +50,43 @@ public:
             }
         }
     }
+    // Add a new patient
+    void addPatient() {
+        cout << "\nYou've chosen to add a new patient.\n";
+        Patient* newPatient = new Patient;
+        newPatient->historyHead = NULL;
+        newPatient->next = NULL;
+
+        cout << "Enter patient name: ";
+        cin >> newPatient->name;
+
+        // Handle invalid input for age
+        newPatient->age = getValidIntegerInput("Enter patient age (must be greater than 0): ");
+
+        // Handle invalid input for medical ID
+        string medicalID;
+        while (true) {
+            cout << "Enter medical ID (alphanumeric): ";
+            cin >> medicalID;
+            if (medicalID.length() > 0) {
+                newPatient->medicalID = medicalID;
+                break;
+            } else {
+                cout << "Medical ID cannot be empty. Please enter a valid ID.\n";
+            }
+        }
+
+        // Add the new patient to the list and queue
+        if (patientListHead == NULL) {
+            patientListHead = newPatient;
+        } else {
+            Patient* temp = patientListHead;
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = newPatient;
+        }
+
+        patientQueue.push(newPatient); // Add patient to the queue
+        cout << "Patient added successfully!\n";
+    }
