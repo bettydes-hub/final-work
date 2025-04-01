@@ -122,6 +122,41 @@ public:
             cout << "Patient with medical ID " << medicalID << " not found!\n";
         }
     }
+//bin 
+void showPatientHistory(string medicalID) {
+        cout << "\nYou've chosen to view a patient's medical history.\n";
+        Patient* temp = patientListHead;
+        bool found = false;
+
+        while (temp != NULL) {
+            if (temp->medicalID == medicalID) {
+                found = true;
+                cout << "Patient Name: " << temp->name << endl;
+                cout << "Age: " << temp->age << endl;
+                cout << "Medical ID: " << temp->medicalID << endl;
+                cout << "\nMedical History: \n";
+
+                MedicalHistory* record = temp->historyHead;
+                if (record == NULL) {
+                    cout << "No medical history available.\n";
+                } else {
+                    while (record != NULL) {
+                        cout << "Visit: " << record->visit << endl;
+                        cout << "Diagnosis: " << record->diagnosis << endl;
+                        cout << "Prescription: " << record->prescription << endl;
+                        cout << "-----------------------------" << endl;
+                        record = record->next;
+                    }
+                }
+                break;
+            }
+            temp = temp->next;
+        }
+
+        if (!found) {
+            cout << "Patient with medical ID " << medicalID << " not found!\n";
+        }
+    }
 //aman
 // Schedule an appointment (add patient to the queue)
     void scheduleAppointment(string medicalID) {
