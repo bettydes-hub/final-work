@@ -8,7 +8,7 @@ struct MedicalHistory {
     string visit;
     string diagnosis;
     string prescription;
-    MedicalHistory* next; // Link to next medical record in the list
+    MedicalHistory* next; 
 };
 struct Patient {
     string name;
@@ -33,8 +33,8 @@ public:
             cout << prompt;
             cin >> value;
             if (cin.fail()) {
-                cin.clear();  // clear the error flag
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard invalid input
+                cin.clear(); 
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
                 cout << "Invalid input! Please enter a valid number.\n";
             } else if (value <= 0) {
                 cout << "Age must be greater than 0. Please enter a valid age.\n";
@@ -73,7 +73,7 @@ public:
             temp->next = newPatient;
         }
 
-        patientQueue.push(newPatient); // Add patient to the queue
+        patientQueue.push(newPatient); 
         cout << "Patient added successfully!\n";
     }
     void recordMedicalHistory(string medicalID) {
@@ -84,7 +84,6 @@ public:
         while (temp != NULL) {
             if (temp->medicalID == medicalID) {
                 found = true;
-                // Record a new medical history entry for the patient
                 MedicalHistory* newRecord = new MedicalHistory;
                 cout << "Enter visit details: ";
                 cin >> newRecord->visit;
@@ -93,7 +92,7 @@ public:
                 cout << "Enter prescription: ";
                 cin >> newRecord->prescription;
                 newRecord->next = temp->historyHead;
-                temp->historyHead = newRecord; // Add to the patient's history
+                temp->historyHead = newRecord; 
                 cout << "Medical history recorded successfully!\n";
                 break;
             }
@@ -146,7 +145,7 @@ void showPatientHistory(string medicalID) {
         while (temp != NULL) {
             if (temp->medicalID == medicalID) {
                 found = true;
-                patientQueue.push(temp); // Re-add patient to the queue for processing
+                patientQueue.push(temp); 
                 cout << "Appointment scheduled for " << temp->name << endl;
                 break;
             }
@@ -227,15 +226,15 @@ void showPatientHistory(string medicalID) {
                 if (choice == 1) {
                     cout << "Enter new diagnosis: ";
                     cin >> record->diagnosis;
-                    record->prescription = "Not updated"; // Default if not updated
+                    record->prescription = "Not updated"; 
                 } else if (choice == 2) {
                     cout << "Enter new prescription: ";
                     cin >> record->prescription;
-                    record->diagnosis = "Not updated"; // Default if not updated
+                    record->diagnosis = "Not updated"; 
                 }
 
                 record->next = temp->historyHead;
-                temp->historyHead = record; // Add to the patient's history
+                temp->historyHead = record;
                 cout << "Medical history updated successfully!\n";
                 break;
             }
